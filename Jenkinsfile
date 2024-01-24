@@ -8,5 +8,10 @@ pipeline {
                 git 'https://github.com/rosepauline/spring-boot-hello-world-jenkins.git'
             }
         }
+        stage('Unit Testing') {
+            steps {
+                sh 'mvn test'
+            }
+        }
     }
 }
