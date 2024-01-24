@@ -2,42 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Git Checkout') {
             steps {
                 // Checkout the source code from version control
-                checkout scm
+                git 'https://github.com/rosepauline/spring-boot-hello-world-jenkins.git'
             }
-        }
-
-        stage('Build') {
-            steps {
-                // Set up Java environment (Java 8)
-                tools {
-                    jdk 'jdk8'
-                }
-
-                // Build the Spring Boot application
-                sh './mvnw clean package'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                // Run tests
-                sh './mvnw test'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                // Your deployment steps go here
-            }
-        }
-    }
-
-    post {
-        success {
-            // Send notifications, deploy to production, etc.
         }
     }
 }
